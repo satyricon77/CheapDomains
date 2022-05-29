@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CheapDomainsTestSuit" verbose="1">
+    <test name="currentMemberPageTest">
+        <classes>
+            <class name="cheapdomains.currentmemberpage.CurrentMemberPageTest"></class>
+        </classes>
+    </test>
+
+    <test name="loginDetailsPageTest">
+        <classes>
+            <class name="cheapdomains.logindetailspage.LoginDetailsPageTest"></class>
+        </classes>
+    </test>
+
+    <test name="memberRegistrationPageTest">
+        <classes>
+            <class name="cheapdomains.memberregistrationpage.MemberRegistrationPageTest"></class>
+        </classes>
+    </test>
+</suite>
