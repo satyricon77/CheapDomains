@@ -1,74 +1,65 @@
 package cheapdomains.currentmemberpage;
 
+import cheapdomains.basetest.BaseTest;
 import cheapdomains.currentmemberpage.dataproviders.CurrentMemberDataProvider;
-import cheapdomains.driver.cash.WebDriverCash;
-import cheapdomains.pages.CurrentMemberPage;
+import cheapdomains.pages.currentmember.CurrentMemberPage;
 import cheapdomains.testdata.CurrentMemberTestData;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class CurrentMemberPageTest {
-    private WebDriver driver = WebDriverCash.getDriver();
-    private CurrentMemberPage currentMemberPage = new CurrentMemberPage(driver);
+public class CurrentMemberPageTest extends BaseTest {
+    private CurrentMemberPage currentMemberPage;
 
-//Here I use priority just in order to have tests in logical sequences.
-    @Test (priority = 1)
-    public void checkBoxTitleTest(String boxTitle) {
-        driver.get("https://www.cheapdomains.com.au/register/member_register_test.php");
-        Assert.assertEquals(currentMemberPage.getBoxTitle(), CurrentMemberTestData.EXPECTED_BOX_TITLE, "Not expected box title.");
-        driver.quit();
-    }
-
-    @Test (priority = 2)
-    public void checkSubTitleTest() {
-        driver.get("https://www.cheapdomains.com.au/register/member_register_test.php");
-        Assert.assertEquals(currentMemberPage.getSubTitle(), CurrentMemberTestData.EXPECTED_SUB_TITLE, "Not expected subtitle.");
-        driver.quit();
-    }
-
-    @Test (priority = 3)
-    public void checkLoginTest(){
+    @BeforeMethod
+    public void setUp() {
         driver.get("https://www.cheapdomains.com.au/register/member_register_test.php");
         driver.manage().window().fullscreen();
-        currentMemberPage.loginFieldIsPresent();
+        currentMemberPage = new CurrentMemberPage(driver);
+    }
+
+    @Test (priority = 1)
+    public void currentMemberElementsArePresentTest() {
+        Assert.assertTrue(currentMemberPage.loginFieldIsPresent(), "Login field is not found");
+        Assert.assertTrue(currentMemberPage.passwordFieldIsPresent(), "Password field is not found");
+        Assert.assertTrue(currentMemberPage.loginButtonIsPresent(), "Login button is not found");
+    }
+
+    //Here I use priority just in order to have tests in logical sequences.
+    @Test(priority = 2)
+    public void checkBoxTitleTest() {
+        Assert.assertEquals(currentMemberPage.getBoxTitle(), CurrentMemberTestData.EXPECTED_BOX_TITLE, "Not expected box title.");
+    }
+
+    @Test(priority = 3)
+    public void checkSubTitleTest() {
+        Assert.assertEquals(currentMemberPage.getSubTitle(), CurrentMemberTestData.EXPECTED_SUB_TITLE, "Not expected subtitle.");
+    }
+
+    @Test(priority = 4)
+    public void checkLoginTest() {
         currentMemberPage.inputUsername(CurrentMemberTestData.USERNAME);
-        currentMemberPage.passwordFieldIsPresent();
         currentMemberPage.inputPassword(CurrentMemberTestData.PASSWORD);
-        currentMemberPage.loginButtonIsPresent();
         currentMemberPage.clickLoginButton();
         Assert.assertTrue(driver.getCurrentUrl().contains("login_process"));
         Assert.assertTrue(currentMemberPage.visitVodienButtonIsPresent());
-        driver.quit();
     }
 
     //This test represents the situation when we have validation errors for incorrect input. This test must fail. It's negative test case.
-    @Test (priority = 3 , dataProvider = "loginValidationTest", dataProviderClass = CurrentMemberDataProvider.class)
+    @Test(priority = 5, dataProvider = "loginValidationTest", dataProviderClass = CurrentMemberDataProvider.class)
     public void checkLoginFieldValidationTest(String login, String validationError) {
-        driver.get("https://www.cheapdomains.com.au/register/member_register_test.php");
-        driver.manage().window().fullscreen();
-        currentMemberPage.loginFieldIsPresent();
         currentMemberPage.inputUsername(login);
-        currentMemberPage.passwordFieldIsPresent();
         currentMemberPage.inputPassword(CurrentMemberTestData.PASSWORD);
-        currentMemberPage.loginButtonIsPresent();
         currentMemberPage.clickLoginButton();
         Assert.assertEquals(currentMemberPage.getLoginValidationError(), validationError);
-        driver.quit();
     }
 
     //This test represents the situation when we have validation errors for incorrect input. This test must fail. It's negative test case.
-    @Test(priority = 4, dataProvider = "passwordValidationTest", dataProviderClass = CurrentMemberDataProvider.class)
-    public void checkPasswordFieldValidationTest(String password, String validationError){
-        driver.get("https://www.cheapdomains.com.au/register/member_register_test.php");
-        driver.manage().window().fullscreen();
-        currentMemberPage.loginFieldIsPresent();
+    @Test(priority = 6, dataProvider = "passwordValidationTest", dataProviderClass = CurrentMemberDataProvider.class)
+    public void checkPasswordFieldValidationTest(String password, String validationError) {
         currentMemberPage.inputUsername(CurrentMemberTestData.USERNAME);
-        currentMemberPage.passwordFieldIsPresent();
         currentMemberPage.inputPassword(password);
-        currentMemberPage.loginButtonIsPresent();
         currentMemberPage.clickLoginButton();
         Assert.assertEquals(currentMemberPage.getPasswordValidationError(), validationError, "Not expected validation message");
-        driver.quit();
     }
 }

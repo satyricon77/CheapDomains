@@ -1,4 +1,4 @@
-package cheapdomains.pages;
+package cheapdomains.pages.abstraction;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

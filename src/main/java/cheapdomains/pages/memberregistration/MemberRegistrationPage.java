@@ -1,5 +1,6 @@
-package cheapdomains.pages;
+package cheapdomains.pages.memberregistration;
 
+import cheapdomains.pages.abstraction.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,39 +10,39 @@ public class MemberRegistrationPage extends AbstractPage {
     private WebElement boxTitle;
     @FindBy(xpath = "//td [@class='box_sub3' and contains(text(), 'NEW member')]")
     private WebElement subTitle;
-    @FindBy(xpath = "//tr [@id='first_name']//input")
+    @FindBy(xpath = "//input [@name='first_name']")
     private WebElement firstNameField;
-    @FindBy(xpath = "//tr [@id='last_name']//input")
+    @FindBy(xpath = "//input [@name='last_name']")
     private WebElement lastNameField;
-    @FindBy(xpath = "//tr [@id='address']//input")
+    @FindBy(xpath = "//input [@name='address']")
     private WebElement addressField;
-    @FindBy(xpath = "//tr [@id='city']//input [@name='city']")
+    @FindBy(xpath = "//input [@name='city']")
     private WebElement cityField;
-    @FindBy(xpath = "//tr [@id='city']//input [@name='post_code']")
+    @FindBy(xpath = "//input [@name='post_code']")
     private WebElement postcodeZipField;
-    @FindBy(xpath = "//tr [@id='country']//select[@id='country_name']")
+    @FindBy(xpath = "//select [@id='country_name']")
     private WebElement countryDropDown;
-    @FindBy(xpath = "//tr [@id='country']//select[@id='country_name']//option [@value='UA']")
+    @FindBy(xpath = "//select[@id='country_name']//option [@value='UA']")
     private WebElement countyNameUA;
-    @FindBy(xpath = "//tr [@id='country']//select[@id='country_name']//option [@value='AU'][1]")
+    @FindBy(xpath = "//select[@id='country_name']//option [@value='AU'][1]")
     private WebElement countryNameAU;
-    @FindBy(xpath = "//tr[@id='state']//input[@id='state_field']")
+    @FindBy(xpath = "//input [@name='state']")
     private WebElement stateField;
-    @FindBy(xpath = "//tr[@id='phone']//input[@id='phone_number']")
+    @FindBy(xpath = "//input [@id='phone_number']")
     private WebElement phoneNumberField;
     @FindBy(xpath = "//td [contains (text(),'check that your email address is correctly entered')]")
     private WebElement emailAddressFieldMessage;
-    @FindBy(xpath = "//tr [@id='email']//input")
+    @FindBy(xpath = "//input [@name='email']")
     private WebElement emailField;
     @FindBy(xpath = "//input [@id='account_type_personal']")
     private WebElement personalAccountRadioButton;
     @FindBy(xpath = "//input [@id='account_type_business']")
     private WebElement businessAccountRadioButton;
-    @FindBy(xpath = "//tr [@id='business_name']//input [@id='business']")
+    @FindBy(xpath = "//input [@name='business_name']")
     private WebElement businessNameField;
-    @FindBy(xpath = "//tr [@id='business_number']//input [@id = 'business_number_element']")
+    @FindBy(xpath = "//input [@name='business_number']")
     private WebElement businessNumberField;
-    @FindBy(xpath = "//table [@class='innertable']//input [@value='Continue Order']")
+    @FindBy(xpath = "//input [@value='Continue Order']")
     private WebElement continueOrderButton;
     @FindBy(xpath = "//* [@id='business_type_element']/option [@value='ABN']")
     private WebElement businessNumberType;

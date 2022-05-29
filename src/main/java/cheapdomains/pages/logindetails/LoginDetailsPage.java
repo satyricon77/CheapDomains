@@ -1,13 +1,14 @@
-package cheapdomains.pages;
+package cheapdomains.pages.logindetails;
 
+import cheapdomains.pages.abstraction.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginDetailsPage extends AbstractPage {
-    @FindBy(xpath = "//* [@id='username']//input")
+    @FindBy(xpath = "//input [@name='username']")
     private WebElement usernameField;
-    @FindBy(xpath = "//* [@id='password']//input")
+    @FindBy(xpath = "//input [@name='password']")
     private WebElement passwordField;
     @FindBy(xpath = "//td [@class='box_title' and text()='Login Details']")
     private WebElement boxTitle;

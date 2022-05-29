@@ -1,16 +1,16 @@
-package cheapdomains.pages;
+package cheapdomains.pages.currentmember;
 
-import cheapdomains.driver.cash.WebDriverCash;
+import cheapdomains.pages.abstraction.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CurrentMemberPage extends AbstractPage {
-    @FindBy(xpath = "//table [@class='innertable']//input [@value='Login Now']")
+    @FindBy(xpath = "//input [@value='Login Now']")
     private WebElement loginButton;
-    @FindBy(xpath = "//td [@class='box2']//input[@name='username_login']")
+    @FindBy(xpath = "//input [@name='username_login']")
     private WebElement usernameLoginField;
-    @FindBy(xpath = "//td [@class='box2']//input[@name='password_login']")
+    @FindBy(xpath = "//input [@name='password_login']")
     private WebElement passwordLoginField;
     @FindBy(xpath = "//td [@class='box_title' and text()='Current Member']")
     private WebElement boxTitle;
