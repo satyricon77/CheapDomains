@@ -42,7 +42,7 @@ public class CurrentMemberPageTest extends BaseTest {
         currentMemberPage.inputPassword(CurrentMemberTestData.PASSWORD);
         currentMemberPage.clickLoginButton();
         Assert.assertTrue(driver.getCurrentUrl().contains("login_process"));
-        Assert.assertTrue(currentMemberPage.visitVodienButtonIsPresent());
+        Assert.assertTrue(currentMemberPage.visitVodienButtonIsPresent(), "Visit vodien button is not found");
     }
 
     //This test represents the situation when we have validation errors for incorrect input. This test must fail. It's negative test case.
@@ -51,7 +51,7 @@ public class CurrentMemberPageTest extends BaseTest {
         currentMemberPage.inputUsername(login);
         currentMemberPage.inputPassword(CurrentMemberTestData.PASSWORD);
         currentMemberPage.clickLoginButton();
-        Assert.assertEquals(currentMemberPage.getLoginValidationError(), validationError);
+        Assert.assertEquals(currentMemberPage.getLoginValidationError(), validationError, "Not expected validation message");
     }
 
     //This test represents the situation when we have validation errors for incorrect input. This test must fail. It's negative test case.

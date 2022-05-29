@@ -168,6 +168,6 @@ public class MemberRegistrationPageTest extends BaseTest {
         memberRegistrationPage.inputPhoneNumber(MemberRegistrationTestData.PHONE_NUMBER);
         memberRegistrationPage.inputEmailAddress(MemberRegistrationTestData.EMAIL_ADDRESS);
         memberRegistrationPage.clickBusinessAccountButton();
-        Assert.assertEquals(memberRegistrationPage.getBusinessNumberTypeName(), MemberRegistrationTestData.DEFAULT_AU_BUSINESS_NUMBER_TYPE);
+        Assert.assertEquals(memberRegistrationPage.getBusinessNumberTypeName(), MemberRegistrationTestData.DEFAULT_AU_BUSINESS_NUMBER_TYPE, "Not expected default business number type");
     }
 }
